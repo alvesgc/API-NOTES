@@ -1,4 +1,5 @@
 require("express-async-errors");
+
 /* Importando o express do node_modules */
 const AppError = require("./utils/AppError");
 const express = require("express");
@@ -14,21 +15,21 @@ app.use(express.json());
 app.use(routes);
 
 /* Tratamento de erros */
-app.use((error, request, response, next) => {
-  
-  if(error instanceof AppError) {
+app.use( (error, request, response, next) => {
+  if (error instanceof AppError) {
     return response.status(error.statusCode).json({
-      status: "error",
+      status: "error",  
       message: error.message
     });
   }
 
-  console.error(error); 
+  console.error(error);
 
   return response.status(500).json({
     status: "error",
     message: "Internal server error"
-  })
+  });
+
 });
 /* Constante contendo a porta que será utilizada */
 const PORT = 3333;

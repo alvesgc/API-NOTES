@@ -5,10 +5,10 @@ class UserController {
     const {nome, email, password } = request.body;
     
     if(!nome) {
-      throw new AppError("Name is required");
-    }
-    response.status(201).json({ nome, email, password });
-  }
+      throw new AppError("Nome é obrigatório!");
+    };
+      response.status(201).json( {nome, email, password} );
+  };
 }
 
 module.exports = UserController;

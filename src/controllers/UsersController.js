@@ -12,7 +12,7 @@ class UserController {
     if(checkUserExist) {
       throw new AppError("User already exists");
     }
-
+    awair
     return response.status(201).json()
   };
 }

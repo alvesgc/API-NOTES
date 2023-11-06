@@ -19,6 +19,24 @@ class UserController {
 
     return response.status(201).json()
   };
+
+  async update(request, response) {
+    const { name , email } = request.body;
+    const { id } = request.params;
+
+    const database = await sqliteConnection();
+    const user = await database.get("SELECT * FROM users WHERE id = (?)", { id });
+
+    if(!user) {
+      throw new AppError("User not found");
+    }
+
+    const userWithUpdatedEmail = await database.get("SELECT * FROM users WHERE email = (?)", { email });
+
+    if(userWithUpdatedEmail && userWithUpdatedEmail.id !== id ) {
+      throw new AppError("Email already in use");
+    }
+  }
 }
 
 module.exports = UserController;

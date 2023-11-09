@@ -7,5 +7,5 @@ exports.up = knex => knex.schema.createTable('tags', table => {
  });
  
  
- exports.down = knex => knex.schema.dropTable('notes');
+ exports.down = knex => knex.schema.dropTable('tags');
  

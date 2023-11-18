@@ -88,7 +88,6 @@
       }
     })
     return response.json(noteWithTags);
-
 }
  };
  
